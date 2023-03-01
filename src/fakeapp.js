@@ -1,6 +1,7 @@
 
 import { React, useState } from 'react';
 import './App.css';
+import bgImage from '././img/bg.jpg'
 
 function App() {
 
@@ -11,21 +12,20 @@ function App() {
       imageNmae:"sky"
     }
   ]
-  const apiimagekey="nVEZCm0GwLRNQSS1RQ1ktEY2DsOW1sNz0c7D3TppIEc";
   const apiKey = "9a6a7be9e5effae30ecfc74cbb15380f";
   const [data, setData] = useState({});
   const [city, setCity] = useState("");
-  const [bgimage,setbgImage]=useState()
+  const [nocity,setNocity]=useState(false);
 
 
-  const getImage=(m)=>{
-    fetch(`https://api.unsplash.com/search/photos?query=${m}&client_id=${apiimagekey}`)
-    .then(response=>response.json())
-    .then(data=>{
-      setbgImage(data.results[4].urls.raw);
-      
-    })
-  }
+  // const getImage=(e)=>{
+  //   fetch(`https://api.api-ninjas.com/v1/randomimage?category=nature`,{
+  //   headers:{'X-Api-Key': 'nrp07UCSASfTVop+6w3nPw==c5SMSejoJMpBzviU', 'Accept': 'image/jpg'}})
+  //   .then(response=>response.json())
+  //   .then(data=>{
+  //     console.log(data);})
+  // }
+
 
   const getData = (event) => {
 
@@ -34,36 +34,39 @@ function App() {
         .then(response => response.json())
         .then((data) => {
           if (typeof data.name == 'undefined') {
-            
+            setNocity(false);
             setData({
               name:"No city found"
             })
 
           }
-          setData(data);
-          console.log(data.weather[0].description);
-          getImage(data.weather[0].description);
+          setNocity(true);
+          setData(data)
         });
 
       setCity("")
     }
   }
   return (
-    <div className='App' style={{backgroundImage:`url(${bgimage})`}}>
-      <div className="container" >
+
+    <div className='App' style={{
+      backgroundImage: `url(${bgImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover",
+      height: 570, width: 1150, backgroundPosition: "center"
+    }}>
+      <div className="container">
         <input
           className='text'
           placeholder='Enter the city'
           value={city}
           onChange={event => setCity(event.target.value)}
           onKeyPress={getData}
-          onClick={getImage}
+        
         />
-      
+
       </div>
 
       {
-        ((typeof data.main != "undefined") ? (
+        (nocity&&(typeof data.main != "undefined") ? (
           <div>
             <div className="location-box">
               <div className="location">
@@ -84,6 +87,7 @@ function App() {
 
 
     </div>
+
   );
 }
 
