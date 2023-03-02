@@ -18,27 +18,22 @@ background-repeat: no-repeat;
 
 
 .container{
-  padding: 50px;
+  
   display: flex;
   flex-direction: column;
 }
 h1{
   text-align: center;
+  font-size: 50px;
 }
-button{
- height: 10px;
- width: 90px;
- padding: 20px;
- padding-top: 20px;
-margin: auto;
 
-}
 
 .text{
   margin: auto;
   padding: 10px;
-  width: 80%;
-  border: 3px solid gray;
+  width: 60%;
+  border: 3px solid rgb(243, 241, 241);
+  box-shadow: 2px 4px rgba(255, 96, 48, 0.5);
 }
 
 
@@ -51,14 +46,7 @@ margin: auto;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
-.location-box .date {
-  color: #FFF;
-  font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
-  text-align: center;
-  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
-}
+
 
 .weather-box {
   text-align: center;
@@ -69,7 +57,7 @@ margin: auto;
   position: relative;
   display: inline-block;
   margin: 30px auto;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(7, 7, 7, 0.2);
   border-radius: 16px;
 
   padding: 15px 25px;
@@ -78,9 +66,9 @@ margin: auto;
   font-size: 102px;
   font-weight: 900;
 
-  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+  text-shadow: 3px 6px rgba(255, 96, 48, 0.5);
   text-align: center;
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 6px rgba(243, 85, 85, 0.2);
 }
 
 .weather-box .weather {
@@ -94,8 +82,7 @@ margin: auto;
 @media  (max-width:400px) {
   .App{
     flex-direction: column;
-    width: 300px;
-    height: 460px;
+    
   }
   
 }

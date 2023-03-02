@@ -1,30 +1,22 @@
-
 import { React, useState } from 'react';
 import './App.css';
 
 function App() {
 
-  const images=[
-    {
-      id:1,
-      imageUrl:'./img/sunny.jpg',
-      imageNmae:"sky"
-    }
-  ]
-  const apiimagekey="nVEZCm0GwLRNQSS1RQ1ktEY2DsOW1sNz0c7D3TppIEc";
+  const imgcount = Math.floor(Math.random() * 10)
+  const apiimagekey = "nVEZCm0GwLRNQSS1RQ1ktEY2DsOW1sNz0c7D3TppIEc";
   const apiKey = "9a6a7be9e5effae30ecfc74cbb15380f";
   const [data, setData] = useState({});
   const [city, setCity] = useState("");
-  const [bgimage,setbgImage]=useState()
+  const [bgimage, setbgImage] = useState()
+  console.log(imgcount);
 
-
-  const getImage=(m)=>{
+  const getImage = (m) => {
     fetch(`https://api.unsplash.com/search/photos?query=${m}&client_id=${apiimagekey}`)
-    .then(response=>response.json())
-    .then(data=>{
-      setbgImage(data.results[4].urls.raw);
-      
-    })
+      .then(response => response.json())
+      .then(data => {
+        setbgImage(data.results[imgcount].urls.raw);
+      })
   }
 
   const getData = (event) => {
@@ -34,14 +26,11 @@ function App() {
         .then(response => response.json())
         .then((data) => {
           if (typeof data.name == 'undefined') {
-            
             setData({
-              name:"No city found"
+              name: "No city found"
             })
-
           }
           setData(data);
-          console.log(data.weather[0].description);
           getImage(data.weather[0].description);
         });
 
@@ -49,7 +38,8 @@ function App() {
     }
   }
   return (
-    <div className='App' style={{backgroundImage:`url(${bgimage})`}}>
+    <div className='App' style={{ backgroundImage: `url(${bgimage})` }}>
+      <h1>check out the Weather</h1>
       <div className="container" >
         <input
           className='text'
@@ -59,7 +49,7 @@ function App() {
           onKeyPress={getData}
           onClick={getImage}
         />
-      
+
       </div>
 
       {
