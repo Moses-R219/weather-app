@@ -18,14 +18,6 @@ function App() {
   const [nocity,setNocity]=useState(false);
 
 
-  // const getImage=(e)=>{
-  //   fetch(`https://api.api-ninjas.com/v1/randomimage?category=nature`,{
-  //   headers:{'X-Api-Key': 'nrp07UCSASfTVop+6w3nPw==c5SMSejoJMpBzviU', 'Accept': 'image/jpg'}})
-  //   .then(response=>response.json())
-  //   .then(data=>{
-  //     console.log(data);})
-  // }
-
 
   const getData = (event) => {
 
